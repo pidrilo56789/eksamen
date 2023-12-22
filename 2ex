@@ -1,0 +1,86 @@
+#include <iostream>
+
+class RatNum {
+private:
+    int numerator;
+    int denominator;
+
+public:
+    // Конструктор класу
+    RatNum(int num = 0, int den = 1) : numerator(num), denominator(den) {
+        if (den == 0) {
+            std::cerr << "Error: Denominator cannot be zero. Setting denominator to 1." << std::endl;
+            denominator = 1;
+        }
+    }
+
+    // Метод для виведення значення дробу на екран
+    void displayFraction() const {
+        std::cout << numerator << "/" << denominator;
+    }
+
+    // Метод для ділення двох дробів
+    RatNum divide(const RatNum& other) const {
+        RatNum result;
+        result.numerator = numerator * other.denominator;
+        result.denominator = denominator * other.numerator;
+        return result;
+    }
+
+    // Метод для множення двох дробів
+    RatNum multiply(const RatNum& other) const {
+        RatNum result;
+        result.numerator = numerator * other.numerator;
+        result.denominator = denominator * other.denominator;
+        return result;
+    }
+
+    // Метод для введення значення дробу з клавіатури
+    void inputFraction() {
+        std::cout << "Enter the numerator: ";
+        std::cin >> numerator;
+
+        std::cout << "Enter the denominator: ";
+        std::cin >> denominator;
+
+        if (denominator == 0) {
+            std::cerr << "Error: Denominator cannot be zero. Setting denominator to 1." << std::endl;
+            denominator = 1;
+        }
+    }
+};
+
+int main() {
+    RatNum fraction1, fraction2;
+
+    // Введення значень дробів з клавіатури
+    std::cout << "Enter values for Fraction 1:" << std::endl;
+    fraction1.inputFraction();
+
+    std::cout << "Enter values for Fraction 2:" << std::endl;
+    fraction2.inputFraction();
+
+    // Виведення дробів на екран
+    std::cout << "Fraction 1: ";
+    fraction1.displayFraction();
+    std::cout << std::endl;
+
+    std::cout << "Fraction 2: ";
+    fraction2.displayFraction();
+    std::cout << std::endl;
+
+    // Ділення та множення дробів
+    RatNum resultDivide = fraction1.divide(fraction2);
+    RatNum resultMultiply = fraction1.multiply(fraction2);
+
+    // Виведення результатів
+    std::cout << "Result of division: ";
+    resultDivide.displayFraction();
+    std::cout << std::endl;
+
+    std::cout << "Result of multiplication: ";
+    resultMultiply.displayFraction();
+    std::cout << std::endl;
+
+    return 0;
+}
