@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cmath>
+
+// Перевантажена функція для цілих чисел
+int power(int base, unsigned int exponent) {
+    int result = 1;
+    for (unsigned int i = 0; i < exponent; ++i) {
+        result *= base;
+    }
+    return result;
+}
+
+// Перевантажена функція для чисел з плаваючою комою одинарної точності
+float power(float base, unsigned int exponent) {
+    return std::pow(base, static_cast<float>(exponent));
+}
+
+// Перевантажена функція для чисел з плаваючою комою подвійної точності
+double power(double base, unsigned int exponent) {
+    return std::pow(base, static_cast<double>(exponent));
+}
+
+int main() {
+    // Приклади використання
+    std::cout << power(2, 3) << std::endl;          // Для цілих чисел: 2^3 = 8
+    std::cout << power(2.5f, 2) << std::endl;       // Для float: 2.5^2 = 6.25
+    std::cout << power(3.14, 2) << std::endl;       // Для double: 3.14^2 = 9.8596
+
+    return 0;
+}
